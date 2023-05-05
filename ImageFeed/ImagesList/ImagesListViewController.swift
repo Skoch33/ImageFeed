@@ -44,12 +44,12 @@ extension ImagesListViewController {
             return
         }
         
-        cell.CellImage.image = image
-        cell.DateLabel.text = dateFormatter.string(from: Date())
+        cell.cellImage.image = image
+        cell.dateLabel.text = dateFormatter.string(from: Date())
         
         let isLiked = indexPath.row % 2 == 0
         let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
-        cell.LikeButton.setImage(likeImage, for: .normal)
+        cell.likeButton.setImage(likeImage, for: .normal)
             
     }
 }
@@ -62,11 +62,11 @@ extension ImagesListViewController: UITableViewDelegate {
             return 0
         }
         let imageInsert = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
-        let imageViewWight = tableView.bounds.width - imageInsert.left - imageInsert.right
-        let imageWight = image.size.width
-        let scale = imageViewWight / imageWight
-        let cellHight = image.size.width * scale + imageInsert.top + imageInsert.bottom
-        return cellHight
+        let imageViewWigth = tableView.bounds.width - imageInsert.left - imageInsert.right
+        let imageWigth = image.size.width
+        let scale = imageViewWigth / imageWigth
+        let cellHeight = image.size.height * scale + imageInsert.top + imageInsert.bottom
+        return cellHeight
     }
 }
 
