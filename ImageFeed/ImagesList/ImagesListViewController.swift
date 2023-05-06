@@ -7,24 +7,24 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    //MARK: - Outlet
+    //MARK: - IBOutlet
     
     @IBOutlet private var tableView: UITableView!
     
-    //MARK: - ViewDidLoad
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
     }
     
-    //MARK: - Let/Var
+    //MARK: - Private Properties
     
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     
@@ -36,7 +36,7 @@ class ImagesListViewController: UIViewController {
     }()
 }
 
-//MARK: - Extention
+//MARK: - ImagesListViewController
 
 extension ImagesListViewController {
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
@@ -54,8 +54,9 @@ extension ImagesListViewController {
     }
 }
 
+//MARK: - UITableViewDelegate
+
 extension ImagesListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let image = UIImage(named: photosName[indexPath.row]) else {
@@ -69,6 +70,8 @@ extension ImagesListViewController: UITableViewDelegate {
         return cellHeight
     }
 }
+
+//MARK: - UITableViewDataSource
 
 extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
