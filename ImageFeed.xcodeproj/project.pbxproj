@@ -13,6 +13,7 @@
 		375259FC29FE79910062759C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375259FA29FE79910062759C /* Main.storyboard */; };
 		375259FE29FE79920062759C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375259FD29FE79920062759C /* Assets.xcassets */; };
 		37525A0129FE79920062759C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375259FF29FE79920062759C /* LaunchScreen.storyboard */; };
+		3770CB612A121CB100691185 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770CB602A121CB100691185 /* ProfileViewController.swift */; };
 		37723AB22A01384A00A5C44D /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37723AB12A01384A00A5C44D /* ImagesListCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		375259FD29FE79920062759C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37525A0029FE79920062759C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37525A0229FE79920062759C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3770CB602A121CB100691185 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		37723AB12A01384A00A5C44D /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,12 +63,21 @@
 				375259F429FE79910062759C /* AppDelegate.swift */,
 				375259F629FE79910062759C /* SceneDelegate.swift */,
 				37723AB02A01382400A5C44D /* ImagesList */,
-				375259FD29FE79920062759C /* Assets.xcassets */,
-				375259FF29FE79920062759C /* LaunchScreen.storyboard */,
+				3770CB5F2A121C8800691185 /* Profile */,
 				375259FA29FE79910062759C /* Main.storyboard */,
+				375259FF29FE79920062759C /* LaunchScreen.storyboard */,
+				375259FD29FE79920062759C /* Assets.xcassets */,
 				37525A0229FE79920062759C /* Info.plist */,
 			);
 			path = ImageFeed;
+			sourceTree = "<group>";
+		};
+		3770CB5F2A121C8800691185 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3770CB602A121CB100691185 /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		37723AB02A01382400A5C44D /* ImagesList */ = {
@@ -151,6 +162,7 @@
 			files = (
 				375259F929FE79910062759C /* ImagesListViewController.swift in Sources */,
 				37723AB22A01384A00A5C44D /* ImagesListCell.swift in Sources */,
+				3770CB612A121CB100691185 /* ProfileViewController.swift in Sources */,
 				375259F529FE79910062759C /* AppDelegate.swift in Sources */,
 				375259F729FE79910062759C /* SceneDelegate.swift in Sources */,
 			);
