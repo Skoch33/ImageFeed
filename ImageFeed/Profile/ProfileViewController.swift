@@ -9,6 +9,10 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @IBOutlet var avatarImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var loginNameLabel: UILabel!
