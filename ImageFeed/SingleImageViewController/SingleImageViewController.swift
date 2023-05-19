@@ -26,7 +26,7 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - IBOutlet
     
     @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private var scrollView: UIScrollView!
     
     //MARK: - LifeCycle
     
@@ -73,5 +73,15 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
         let x = (newContentSize.width - visibleRectSize.width) / 2
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        let imageViewSize = imageView.frame.size
+        let scrollViewSize = scrollView.bounds.size
+
+        let verticalPadding = imageViewSize.height < scrollViewSize.height ? (scrollViewSize.height - imageViewSize.height) / 2 : 0
+        let horizontalPadding = imageViewSize.width < scrollViewSize.width ? (scrollViewSize.width - imageViewSize.width) / 2 : 0
+
+        scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
     }
 }

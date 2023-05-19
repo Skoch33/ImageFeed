@@ -9,6 +9,8 @@ import UIKit
 
 final class ImagesListViewController: UIViewController {
     
+    //MARK: - UIStatusBarStyle
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
