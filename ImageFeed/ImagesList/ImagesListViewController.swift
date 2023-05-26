@@ -9,6 +9,8 @@ import UIKit
 
 final class ImagesListViewController: UIViewController {
     
+    //MARK: - UIStatusBarStyle
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -24,7 +26,22 @@ final class ImagesListViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
     }
     
+    // MARK: - Functions
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? SingleImageViewController,
+                   let indexPath = sender as? IndexPath,
+                   segue.identifier == ShowSingleImageSegueIdentifier {
+                    let image = UIImage(named: photosName[indexPath.row])
+                    viewController.image = image
+                   } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
     //MARK: - Private Properties
+    
+    private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
     
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     
@@ -69,6 +86,10 @@ extension ImagesListViewController: UITableViewDelegate {
         let cellHeight = image.size.height * scale + imageInsert.top + imageInsert.bottom
         return cellHeight
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            performSegue(withIdentifier: ShowSingleImageSegueIdentifier, sender: indexPath)
+        }
 }
 
 //MARK: - UITableViewDataSource
@@ -90,3 +111,5 @@ extension ImagesListViewController: UITableViewDataSource {
         return imageListCell
     }
 }
+
+
