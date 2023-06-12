@@ -8,86 +8,59 @@
 import Foundation
 
 final class OAuth2Service {
-    
-    static let shared = OAuth2Service()
-    let urlSession = URLSession.shared
-    
-    private(set) var authToken: String? {
-        get {
-            return OAuth2TokenStorage.token
-        }
-        set {
-            OAuth2TokenStorage.token = newValue
-        }
+    enum NetworkError: Error {
+        case codeError
+        case unableToDecodeStringFromData
     }
     
-    private enum NetworkError: Error {
-        case httpStatusCode(Int)
-        case urlRequestError(Error)
-        case urlSessionError
-    }
+    private var lastCode: String?
+    private var currentTask: URLSessionTask?
     
-    func fetchOAuthToken(
-        _ code: String,
-        completion: @escaping (Result<String, Error>) -> Void
-    ) {
-        let request = authTokenRequest(code: code)
-        let task = self.object(for: request) { [weak self] result in
-            guard let self = self else { return }
+    func fetchAuthToken(code: String, handler: @escaping (Result<String, Error>) -> Void) {
+        assert(Thread.isMainThread)
+        
+        if lastCode == code { return }
+        currentTask?.cancel()
+        lastCode = code
+        
+        guard let request = makeRequest(code: code) else { return }
+        
+        let session = URLSession.shared
+        currentTask = session.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
+            guard let self else { return }
+            self.currentTask = nil
             switch result {
-            case .success(let body):
-                let authToken = body.access_token
-                self.authToken = authToken
-                DispatchQueue.main.async {
-                    completion(.success(authToken))
-                }
+            case .success(let oAuthToken):
+                handler(.success(oAuthToken.access_token))
             case .failure(let error):
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
+                handler(.failure(error))
             }
         }
-        task.resume()
+        currentTask?.resume()
     }
     
-    private func object(
-        for request: URLRequest,
-        completion: @escaping (Result<OAuthTokenResponseBody, Error>) -> Void
-    ) -> URLSessionTask {
-        let decoder = JSONDecoder()
-        return urlSession.dataTask(with: request) { (data, response, error) in
-            if let data = data,
-               let response = response as? HTTPURLResponse,
-               200 ..< 300 ~= response.statusCode {
-                do {
-                    let responseBody = try decoder.decode(OAuthTokenResponseBody.self, from: data)
-                    completion(.success(responseBody))
-                } catch {
-                    completion(.failure(error))
-                }
-            } else if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.failure(NetworkError.urlSessionError))
-            }
-        }
-    }
-    
-    private func authTokenRequest(code: String) -> URLRequest {
-        let parameters = [
-            "client_id": AccessKey,
-            "client_secret": SecretKey,
-            "redirect_uri": RedirectURI,
+    private func makeRequest(code: String) -> URLRequest? {
+        let url = URL(string: "https://unsplash.com/oauth/token")!
+        var request = URLRequest(url: url)
+        let params: [String: Any] = [
+            "client_id": Constants.accessKey,
+            "client_secret": Constants.secretKey,
+            "redirect_uri": Constants.redirectURI,
             "code": code,
             "grant_type": "authorization_code"
         ]
-        let url = URL(string: "https://unsplash.com/oauth/token")!
-        var request = URLRequest(url: url)
+        
         request.httpMethod = "POST"
-        request.httpBody = parameters
-            .map { "\($0.key)=\($0.value)" }
-            .joined(separator: "&")
-            .data(using: .utf8)
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+            return nil
+        }
         return request
     }
 }

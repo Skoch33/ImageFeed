@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 final class SplashViewController: UIViewController {
     
@@ -19,18 +20,32 @@ final class SplashViewController: UIViewController {
     
     private let ShowAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let oauth2Service = OAuth2Service()
-    private let oauth2TokenStorage = OAuth2TokenStorage()
+    private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
 
 //MARK: - LifeCycle
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        if OAuth2TokenStorage.token != nil
-        {
-            switchToTabBarController()
+        
+        if let token = OAuth2TokenStorage.token {
+            UIBlockingProgressHUD.show()
+            profileService.fetchProfile(token) { [weak self] _ in
+                guard let self else { return }
+                self.profileImageService.fetchProfileImageURL(
+                    token: token,
+                    username: self.profileService.currentProfile!.username
+                ) { _ in
+                    self.switchToTabBarController()
+                    UIBlockingProgressHUD.dismiss()
+                }
+            }
         } else {
-            performSegue(withIdentifier: ShowAuthenticationScreenSegueIdentifier, sender: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let authViewController = storyboard.instantiateViewController(identifier: "AuthViewController") as? AuthViewController else { return }
+            authViewController.delegate = self
+            authViewController.modalPresentationStyle = .fullScreen
+            self.present(authViewController, animated: true)
         }
     }
 
@@ -74,6 +89,7 @@ extension SplashViewController {
 
 extension SplashViewController: AuthViewControllerDelegate {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
+        ProgressHUD.show()
         dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             self.fetchOAuthToken(code)
@@ -81,16 +97,17 @@ extension SplashViewController: AuthViewControllerDelegate {
     }
 
     private func fetchOAuthToken(_ code: String) {
-        oauth2Service.fetchOAuthToken(code) { [weak self] result in
+        oauth2Service.fetchAuthToken(code: code) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let authToken):
-
-                OAuth2TokenStorage.token = authToken
-                self.switchToTabBarController()
+            case .success(let token):
+                OAuth2TokenStorage.token = token
+                self.profileService.fetchProfile(token) { _ in
+                    self.switchToTabBarController()
+                    UIBlockingProgressHUD.dismiss()
+                }
             case .failure:
-                // TODO:
-                break
+                UIBlockingProgressHUD.dismiss()
             }
         }
     }

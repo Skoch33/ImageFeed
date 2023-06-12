@@ -22,6 +22,7 @@ final class ProfileViewController: UIViewController {
     private var loginNameLabel: UILabel!
     private var descriptionLabel: UILabel!
     private var logoutButton: UIButton!
+    private let profileService = ProfileService.shared
     
     //MARK: - LifeCycle
     
@@ -33,10 +34,18 @@ final class ProfileViewController: UIViewController {
         loginNameLabelCall()
         descriptionLabelCall()
         logoutButtonCall()
+        updateProfileDetails()
         
     }
     
     //MARK: - Privat Functions
+    
+    private func updateProfileDetails() {
+        guard let profile = profileService.currentProfile else { return }
+        nameLabel.text = profile.name
+        loginNameLabel.text = profile.loginName
+        descriptionLabel.text = profile.bio
+    }
     
     private func avatarImageViewCall() {
         let avatarImageView = UIImageView(image: UIImage(named: "avatar"))
