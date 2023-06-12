@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
@@ -23,6 +24,9 @@ final class ProfileViewController: UIViewController {
     private var descriptionLabel: UILabel!
     private var logoutButton: UIButton!
     private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
+    private var profileImageServiceObserver: NSObjectProtocol?
+    private var profileImageView: UIImageView?
     
     //MARK: - LifeCycle
     
@@ -36,9 +40,26 @@ final class ProfileViewController: UIViewController {
         logoutButtonCall()
         updateProfileDetails()
         
+        profileImageServiceObserver = NotificationCenter.default.addObserver(
+            forName: profileImageService.DidChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self else { return }
+            self.downloadAndSetAvatar()
+        }
+        downloadAndSetAvatar()
     }
     
     //MARK: - Privat Functions
+    
+    private func downloadAndSetAvatar() {
+        guard let avatarURL = profileImageService.avatarURL else { return }
+        DispatchQueue.main.async {
+            self.avatarImageView.kf.indicatorType = .activity
+            self.avatarImageView.kf.setImage(with: avatarURL)
+        }
+    }
     
     private func updateProfileDetails() {
         guard let profile = profileService.currentProfile else { return }
@@ -58,6 +79,8 @@ final class ProfileViewController: UIViewController {
         avatarImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         
         self.avatarImageView = avatarImageView
+        avatarImageView.layer.cornerRadius = 35
+        avatarImageView.layer.masksToBounds = true
     }
     
     private func nameLabelCall() {

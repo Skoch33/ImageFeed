@@ -40,7 +40,7 @@ final class ProfileImageService {
             self.getProfileImageTask = nil
             switch result {
             case .success(let userResult):
-                guard let avatarStringURL = userResult.profileImage["small"],
+                guard let avatarStringURL = userResult.profileImage["large"],
                       let avatarURL = URL(string: avatarStringURL) else {
                     completion(.failure(GetProfileImageError.noURL))
                     return

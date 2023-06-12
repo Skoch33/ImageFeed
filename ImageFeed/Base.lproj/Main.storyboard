@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector" translatesAutoresizingMaskIntoConstraints="NO" id="Ot2-yz-iqv">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vector" translatesAutoresizingMaskIntoConstraints="NO" id="Ot2-yz-iqv">
                                 <rect key="frame" x="150" y="375" width="75" height="78"/>
                             </imageView>
                         </subviews>
@@ -64,7 +64,7 @@ YP White (iOS)</string>
         <!--Auth View Controller-->
         <scene sceneID="uJj-bp-gu5">
             <objects>
-                <viewController id="jTX-RY-6Oq" customClass="AuthViewController" customModule="ImageFeed" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthViewController" id="jTX-RY-6Oq" customClass="AuthViewController" customModule="ImageFeed" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8xF-QN-bhk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,7 +117,7 @@ YP White (iOS)</string>
         <!--Web View View Controller-->
         <scene sceneID="mbN-qY-NUa">
             <objects>
-                <viewController id="1oI-pY-p9s" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1oI-pY-p9s" customClass="WebViewViewController" customModule="ImageFeed" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jYX-rk-GNp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,7 +170,7 @@ YP White (iOS)</string>
         <!--Images List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ImagesListViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ImagesListViewController" customModule="ImageFeed" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -376,6 +376,7 @@ YP Background (iOS)</string>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
+        <image name="Vector" width="75" height="78"/>
         <image name="auth_screen_logo" width="60" height="60"/>
         <image name="backward" width="9" height="15.666666984558105"/>
         <image name="like_button_on" width="30" height="27.333333969116211"/>
@@ -383,7 +384,6 @@ YP Background (iOS)</string>
         <image name="sharing_button" width="50" height="50"/>
         <image name="tab_editorial_active" width="20" height="22"/>
         <image name="tab_profile_active" width="24" height="24"/>
-        <image name="vector" width="75" height="78"/>
         <namedColor>
             <string key="name">
 YP Background (iOS)</string>
