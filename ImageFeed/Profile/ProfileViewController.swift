@@ -69,6 +69,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func avatarImageViewCall() {
+        view.backgroundColor = UIColor(named: "YP Black (iOS)")
         let avatarImageView = UIImageView(image: UIImage(named: "avatar"))
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(avatarImageView)
