@@ -28,10 +28,11 @@
 		37EFD5E72A337F1A007ADEB6 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 37EFD5E62A337F1A007ADEB6 /* ProgressHUD */; };
 		37EFD5EA2A371AD7007ADEB6 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFD5E92A371AD7007ADEB6 /* UIBlockingProgressHUD.swift */; };
 		37EFD5ED2A3720C6007ADEB6 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFD5EC2A3720C6007ADEB6 /* ProfileService.swift */; };
-		37EFD5EF2A372170007ADEB6 /* ProfileModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFD5EE2A372170007ADEB6 /* ProfileModels.swift */; };
+		37EFD5EF2A372170007ADEB6 /* ProfileResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFD5EE2A372170007ADEB6 /* ProfileResult.swift */; };
 		37EFD5F12A37257E007ADEB6 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFD5F02A37257E007ADEB6 /* URLSession.swift */; };
 		37EFD5F32A3725F7007ADEB6 /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFD5F22A3725F7007ADEB6 /* ProfileImageService.swift */; };
 		37EFD5FF2A378104007ADEB6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 37EFD5FE2A378104007ADEB6 /* Kingfisher */; };
+		37F7D1CD2A460CC70037A2D8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F7D1CC2A460CC70037A2D8 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,9 +57,10 @@
 		37D6F20B2A4485F6009AE093 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		37EFD5E92A371AD7007ADEB6 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		37EFD5EC2A3720C6007ADEB6 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
-		37EFD5EE2A372170007ADEB6 /* ProfileModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModels.swift; sourceTree = "<group>"; };
+		37EFD5EE2A372170007ADEB6 /* ProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResult.swift; sourceTree = "<group>"; };
 		37EFD5F02A37257E007ADEB6 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		37EFD5F22A3725F7007ADEB6 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
+		37F7D1CC2A460CC70037A2D8 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +132,9 @@
 			children = (
 				3770CB602A121CB100691185 /* ProfileViewController.swift */,
 				37EFD5EC2A3720C6007ADEB6 /* ProfileService.swift */,
-				37EFD5EE2A372170007ADEB6 /* ProfileModels.swift */,
+				37EFD5EE2A372170007ADEB6 /* ProfileResult.swift */,
 				37EFD5F22A3725F7007ADEB6 /* ProfileImageService.swift */,
+				37F7D1CC2A460CC70037A2D8 /* Profile.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -259,10 +262,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				375259F929FE79910062759C /* ImagesListViewController.swift in Sources */,
+				37F7D1CD2A460CC70037A2D8 /* Profile.swift in Sources */,
 				37723AB22A01384A00A5C44D /* ImagesListCell.swift in Sources */,
 				374D6C2A2A2A659F000D59D0 /* OAuthTokenResponseBody.swift in Sources */,
 				37EFD5F12A37257E007ADEB6 /* URLSession.swift in Sources */,
-				37EFD5EF2A372170007ADEB6 /* ProfileModels.swift in Sources */,
+				37EFD5EF2A372170007ADEB6 /* ProfileResult.swift in Sources */,
 				3770CB612A121CB100691185 /* ProfileViewController.swift in Sources */,
 				37D6F20C2A4485F6009AE093 /* TabBarController.swift in Sources */,
 				375259F529FE79910062759C /* AppDelegate.swift in Sources */,

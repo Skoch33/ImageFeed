@@ -9,6 +9,7 @@ import UIKit
 
 final class ProfileImageService {
     static let shared = ProfileImageService()
+    private init() {}
     private (set) var avatarURL: URL?
     private var getProfileImageTask: URLSessionTask?
     private var lastProfileImageCode: String?
@@ -21,7 +22,7 @@ final class ProfileImageService {
         case noURL
     }
     
-    struct UserResult: Decodable {
+    struct UserResult: Codable {
         let profileImage: [String: String]
         
         enum CodingKeys: String, CodingKey {
