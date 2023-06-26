@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct OAuthTokenResponseBody: Decodable {
+struct OAuthTokenResponseBody: Codable {
         let access_token: String
         let token_type: String
         let refresh_token: String

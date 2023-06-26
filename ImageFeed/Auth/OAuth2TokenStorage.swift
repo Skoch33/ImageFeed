@@ -6,15 +6,17 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 class OAuth2TokenStorage {
     static private let bearerTokenKey = "imageFeedBearerToken"
     static var token: String? {
         get {
-            UserDefaults.standard.string(forKey: bearerTokenKey)
+            let token: String? = KeychainWrapper.standard.string(forKey: OAuth2TokenStorage.bearerTokenKey)
+            return token
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: bearerTokenKey)
+            KeychainWrapper.standard.set(newValue!, forKey: OAuth2TokenStorage.bearerTokenKey)
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
@@ -22,6 +23,10 @@ final class ProfileViewController: UIViewController {
     private var loginNameLabel: UILabel!
     private var descriptionLabel: UILabel!
     private var logoutButton: UIButton!
+    private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
+    private var profileImageServiceObserver: NSObjectProtocol?
+    private var profileImageView: UIImageView?
     
     //MARK: - LifeCycle
     
@@ -33,12 +38,38 @@ final class ProfileViewController: UIViewController {
         loginNameLabelCall()
         descriptionLabelCall()
         logoutButtonCall()
+        updateProfileDetails()
         
+        profileImageServiceObserver = NotificationCenter.default.addObserver(
+            forName: profileImageService.DidChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self else { return }
+            self.downloadAndSetAvatar()
+        }
+        downloadAndSetAvatar()
     }
     
     //MARK: - Privat Functions
     
+    private func downloadAndSetAvatar() {
+        guard let avatarURL = profileImageService.avatarURL else { return }
+        DispatchQueue.main.async {
+            self.avatarImageView.kf.indicatorType = .activity
+            self.avatarImageView.kf.setImage(with: avatarURL)
+        }
+    }
+    
+    private func updateProfileDetails() {
+        guard let profile = profileService.currentProfile else { return }
+        nameLabel.text = profile.name
+        loginNameLabel.text = profile.loginName
+        descriptionLabel.text = profile.bio
+    }
+    
     private func avatarImageViewCall() {
+        view.backgroundColor = UIColor(named: "YP Black (iOS)")
         let avatarImageView = UIImageView(image: UIImage(named: "avatar"))
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(avatarImageView)
@@ -49,6 +80,8 @@ final class ProfileViewController: UIViewController {
         avatarImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         
         self.avatarImageView = avatarImageView
+        avatarImageView.layer.cornerRadius = 35
+        avatarImageView.layer.masksToBounds = true
     }
     
     private func nameLabelCall() {
