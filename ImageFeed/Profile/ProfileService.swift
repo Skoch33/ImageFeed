@@ -21,6 +21,12 @@ final class ProfileService {
         case unableToDecodeStringFromProfileData
     }
     
+    func clean() {
+        currentProfile = nil
+        getProfileTask?.cancel()
+        getProfileTask = nil
+    }
+    
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
         assert(Thread.isMainThread)
         

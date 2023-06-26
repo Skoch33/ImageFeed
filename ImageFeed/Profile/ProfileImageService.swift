@@ -65,4 +65,10 @@ final class ProfileImageService {
         request.httpMethod = "GET"
         return request
     }
+    
+    func clean() {
+        avatarURL = nil
+        getProfileImageTask?.cancel()
+        getProfileImageTask = nil
+    }
 }
