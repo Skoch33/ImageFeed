@@ -10,19 +10,20 @@ import ProgressHUD
 
 final class SplashViewController: UIViewController {
     
-//MARK: - UIStatusBarStyle
+    //MARK: - UIStatusBarStyle
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
     
-//MARK: - Private Properties
+    //MARK: - Private Properties
     
     private let ShowAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let oauth2Service = OAuth2Service()
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
-
+    private let imagesListService = ImagesListService.shared
+    
     //MARK: - Privat Functions
     
     private func splashScreenInit(view: UIView){
@@ -67,13 +68,13 @@ final class SplashViewController: UIViewController {
             self.present(authViewController, animated: true)
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
     }
-
-// MARK: - Functions
+    
+    // MARK: - Functions
     
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else {
@@ -96,7 +97,7 @@ extension SplashViewController: AuthViewControllerDelegate {
             self.fetchOAuthToken(code)
         }
     }
-
+    
     private func fetchOAuthToken(_ code: String) {
         oauth2Service.fetchAuthToken(code: code) { [weak self] result in
             guard let self = self else { return }

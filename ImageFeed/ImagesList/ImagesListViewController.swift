@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ImagesListViewController: UIViewController {
     
@@ -24,6 +25,17 @@ final class ImagesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+       
+        imagesListServiceObserver = NotificationCenter.default.addObserver(
+                             forName: ImagesListService.DidChangeNotification,
+                             object: nil, queue: .main
+                         ) { [weak self] _ in
+                             guard let self = self else { return }
+                             self.updateImages()
+                         }
+                     }
+
+                     private func updateImages() {
     }
     
     // MARK: - Functions
@@ -42,6 +54,7 @@ final class ImagesListViewController: UIViewController {
     //MARK: - Private Properties
     
     private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
+    private var imagesListServiceObserver: NSObjectProtocol?
     
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     
@@ -91,6 +104,10 @@ extension ImagesListViewController: UITableViewDelegate {
             performSegue(withIdentifier: ShowSingleImageSegueIdentifier, sender: indexPath)
         }
 }
+
+func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    }
+
 
 //MARK: - UITableViewDataSource
 
