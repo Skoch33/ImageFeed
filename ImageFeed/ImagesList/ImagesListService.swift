@@ -54,15 +54,17 @@ final class ImagesListService {
     private var lastLoadedPage: Int?
     private let perPage = "10"
     private var task: URLSessionTask?
+    private let storageToken = OAuth2TokenStorage()
 }
 
 extension ImagesListService {
     
-    func fetchPhotosNextPage(_ token: String) {
+    func fetchPhotosNextPage() {
         assert(Thread.isMainThread)
         task?.cancel()
         
         let page = lastLoadedPage == nil ? 1 : lastLoadedPage! + 1
+        guard let token = storageToken.token else { return }
         guard let request = fetchImagesListRequest(token, page: String(page), perPage: perPage) else { return }
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
             DispatchQueue.main.async {
@@ -110,7 +112,9 @@ extension ImagesListService {
             path: "/photos?page=\(page)&&per_page=\(perPage)",
             httpMethod: "GET",
             baseURL: url)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        if let token = OAuth2TokenStorage().token {
+                               request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                                    }
         return request
     }
 }
