@@ -12,6 +12,7 @@ final class ProfileImageService {
     private init() {}
     private (set) var avatarURL: URL?
     private var getProfileImageTask: URLSessionTask?
+    private let storageToken = OAuth2TokenStorage()
     private var lastProfileImageCode: String?
     let DidChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     
@@ -30,11 +31,10 @@ final class ProfileImageService {
         }
     }
 
-    func fetchProfileImageURL(token: String, username: String, _ completion: @escaping (Result<URL, Error>) -> Void) {
+    func fetchProfileImageURL(username: String, _ completion: @escaping (Result<URL, Error>) -> Void) {
         assert(Thread.isMainThread)
         
-        let request = makeProfileImageRequest(username, token)
-        
+        let request = makeProfileImageRequest(token: storageToken.token!, username: username)
         let session = URLSession.shared
         getProfileImageTask = session.objectTask(for: request) { [weak self] (result: Result<UserResult, Error>) in
             guard let self else { return }
@@ -58,7 +58,7 @@ final class ProfileImageService {
         getProfileImageTask?.resume()
     }
     
-    private func makeProfileImageRequest(_ username: String, _ token: String) -> URLRequest {
+    private func makeProfileImageRequest(token: String, username: String) -> URLRequest {
         var request = URLRequest(url: Constants.defaultBaseURL.appendingPathComponent("users/\(username)"))
         request.setValue("Bearer \(String(describing: token))", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
