@@ -71,7 +71,7 @@ extension ImagesListService {
         task?.cancel()
         
         let page = lastLoadedPage == nil ? 1 : lastLoadedPage! + 1
-        guard let token = storageToken.token else { return }
+        guard let token = OAuth2TokenStorage().token else { return }
         guard let request = fetchImagesListRequest(token, page: String(page), perPage: perPage) else { return }
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
             DispatchQueue.main.async {
@@ -119,9 +119,7 @@ extension ImagesListService {
             path: "/photos?page=\(page)&&per_page=\(perPage)",
             httpMethod: "GET",
             baseURL: url)
-        if let token = OAuth2TokenStorage().token {
-                               request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-                                    }
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
     }
 }
