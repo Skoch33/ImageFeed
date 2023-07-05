@@ -70,6 +70,7 @@ final class ImagesListViewController: UIViewController {
     
     var photos: [Photo] = []
     private let imagesListService = ImagesListService.shared
+    private let animationGradient = Animation.shared
     
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
     private var imagesListServiceObserver: NSObjectProtocol?
@@ -89,8 +90,18 @@ extension ImagesListViewController {
         let imageUrl = photos[IndexPath.row].thumbImageURL!
         let url = URL(string: imageUrl)
         let placeholder = UIImage(named: "Stub")
+        let offsetX: CGFloat = 20
+                 let offsetY: CGFloat = 3
+                 let cornerRadius: CGFloat = cell.cellImage.layer.cornerRadius
+                 let gradient = animationGradient.createGradient(
+                     width: cell.frame.width - offsetX * 2,
+                     height: cell.frame.height - offsetY * 2,
+                     offsetX: offsetX, offsetY: offsetY, cornerRadius: cornerRadius)
+                 cell.layer.addSublayer(gradient)
+        
         cell.cellImage.kf.indicatorType = .activity
         cell.cellImage.kf.setImage(with: url, placeholder: placeholder) { [weak self] _ in
+            gradient.removeFromSuperlayer()
             guard let self = self else { return }
             self.tableView.reloadRows(at: [IndexPath], with: .automatic)
             cell.cellImage.kf.indicatorType = .none

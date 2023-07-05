@@ -23,6 +23,7 @@
 		37723AB22A01384A00A5C44D /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37723AB12A01384A00A5C44D /* ImagesListCell.swift */; };
 		377C4A6C2A24AA1A00A406FD /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C4A6B2A24AA1A00A406FD /* AuthViewController.swift */; };
 		377C4A6E2A24ABAD00A406FD /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C4A6D2A24ABAD00A406FD /* WebViewViewController.swift */; };
+		37D4DF552A5596C300AE010E /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D4DF542A5596C300AE010E /* Animation.swift */; };
 		37D6F2092A44809B009AE093 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 37D6F2082A44809B009AE093 /* SwiftKeychainWrapper */; };
 		37D6F20C2A4485F6009AE093 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D6F20B2A4485F6009AE093 /* TabBarController.swift */; };
 		37EFD5E72A337F1A007ADEB6 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 37EFD5E62A337F1A007ADEB6 /* ProgressHUD */; };
@@ -55,6 +56,7 @@
 		37723AB12A01384A00A5C44D /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		377C4A6B2A24AA1A00A406FD /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		377C4A6D2A24ABAD00A406FD /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
+		37D4DF542A5596C300AE010E /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		37D6F20B2A4485F6009AE093 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		37EFD5E92A371AD7007ADEB6 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		37EFD5EC2A3720C6007ADEB6 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				375259F429FE79910062759C /* AppDelegate.swift */,
 				37EFD5E92A371AD7007ADEB6 /* UIBlockingProgressHUD.swift */,
 				37EFD5F02A37257E007ADEB6 /* URLSession.swift */,
+				37D4DF542A5596C300AE010E /* Animation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D4DF552A5596C300AE010E /* Animation.swift in Sources */,
 				375259F929FE79910062759C /* ImagesListViewController.swift in Sources */,
 				37F7D1CD2A460CC70037A2D8 /* Profile.swift in Sources */,
 				37723AB22A01384A00A5C44D /* ImagesListCell.swift in Sources */,

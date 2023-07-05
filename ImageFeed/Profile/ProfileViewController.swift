@@ -28,6 +28,12 @@ final class ProfileViewController: UIViewController {
     private var profileImageServiceObserver: NSObjectProtocol?
     private var profileImageView: UIImageView?
     private let storageToken = OAuth2TokenStorage()
+    private let animationGradient = Animation.shared
+    private var gradientView: CAGradientLayer!
+    private var gradientName: CAGradientLayer!
+    private var gradientNick: CAGradientLayer!
+    private var gradientText: CAGradientLayer!
+    private var gradientDescription: CAGradientLayer!
     
     //MARK: - LifeCycle
     
@@ -67,6 +73,10 @@ final class ProfileViewController: UIViewController {
         nameLabel.text = profile.name
         loginNameLabel.text = profile.loginName
         descriptionLabel.text = profile.bio
+        
+        gradientName.removeFromSuperlayer()
+        gradientNick.removeFromSuperlayer()
+        gradientText.removeFromSuperlayer()
     }
     
     private func avatarImageViewCall() {
@@ -83,6 +93,9 @@ final class ProfileViewController: UIViewController {
         self.avatarImageView = avatarImageView
         avatarImageView.layer.cornerRadius = 35
         avatarImageView.layer.masksToBounds = true
+        
+        gradientView = animationGradient.createGradient(width: 70, height: 70, cornerRadius: 35)
+        self.avatarImageView.layer.addSublayer(gradientView)
     }
     
     private func nameLabelCall() {
@@ -98,6 +111,8 @@ final class ProfileViewController: UIViewController {
         nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true
         
         self.nameLabel = nameLabel
+        gradientName = animationGradient.createGradient(width: 223, height: 23, cornerRadius: 11.5)
+        self.nameLabel.layer.addSublayer(gradientName)
     }
     
     private func loginNameLabelCall() {
@@ -113,6 +128,8 @@ final class ProfileViewController: UIViewController {
         loginNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true
         
         self.loginNameLabel = loginNameLabel
+        gradientNick = animationGradient.createGradient(width: 89, height: 18, cornerRadius: 9)
+        self.loginNameLabel.layer.addSublayer(gradientNick)
     }
     
     private func descriptionLabelCall() {
@@ -128,6 +145,8 @@ final class ProfileViewController: UIViewController {
         descriptionLabel.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true
         
         self.descriptionLabel = descriptionLabel
+        gradientText = animationGradient.createGradient(width: 67, height: 18, cornerRadius: 9)
+        self.descriptionLabel.layer.addSublayer(gradientText)
     }
     
     private func logoutButtonCall() {
