@@ -40,27 +40,24 @@ final class OAuth2Service {
     }
     
     private func makeRequest(code: String) -> URLRequest? {
-        let url = URL(string: "https://unsplash.com/oauth/token")!
-        var request = URLRequest(url: url)
-        let params: [String: Any] = [
-            "client_id": Constants.accessKey,
-            "client_secret": Constants.secretKey,
-            "redirect_uri": Constants.redirectURI,
-            "code": code,
-            "grant_type": "authorization_code"
-        ]
-        
-        request.httpMethod = "POST"
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription)
-            return nil
-        }
+        URLRequest.makeHTTPRequest(
+            path: "/oauth/token"
+            + "?client_id=\(Constants.accessKey)"
+            + "&&client_secret=\(Constants.secretKey)"
+            + "&&redirect_uri=\(Constants.redirectURI)"
+            + "&&code=\(code)"
+            + "&&grant_type=authorization_code",
+            httpMethod: "POST",
+            baseURL: URL(string: "\(Constants.baseURL)")!
+        )}
+}
+
+// MARK: - HTTP Request
+
+extension URLRequest {
+    static func makeHTTPRequest(path: String, httpMethod: String, baseURL: URL = Constants.defaultBaseURL) -> URLRequest {
+        var request = URLRequest(url: URL(string: path, relativeTo: baseURL)!)
+        request.httpMethod = httpMethod
         return request
     }
 }

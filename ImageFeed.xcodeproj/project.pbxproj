@@ -32,6 +32,7 @@
 		37EFD5F12A37257E007ADEB6 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFD5F02A37257E007ADEB6 /* URLSession.swift */; };
 		37EFD5F32A3725F7007ADEB6 /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFD5F22A3725F7007ADEB6 /* ProfileImageService.swift */; };
 		37EFD5FF2A378104007ADEB6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 37EFD5FE2A378104007ADEB6 /* Kingfisher */; };
+		37F6E7042A49972300BF323E /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F6E7032A49972300BF323E /* ImagesListService.swift */; };
 		37F7D1CD2A460CC70037A2D8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F7D1CC2A460CC70037A2D8 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		37EFD5EE2A372170007ADEB6 /* ProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResult.swift; sourceTree = "<group>"; };
 		37EFD5F02A37257E007ADEB6 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		37EFD5F22A3725F7007ADEB6 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
+		37F6E7032A49972300BF323E /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
 		37F7D1CC2A460CC70037A2D8 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +146,7 @@
 			children = (
 				375259F829FE79910062759C /* ImagesListViewController.swift */,
 				37723AB12A01384A00A5C44D /* ImagesListCell.swift */,
+				37F6E7032A49972300BF323E /* ImagesListService.swift */,
 			);
 			path = ImagesList;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				37F7D1CD2A460CC70037A2D8 /* Profile.swift in Sources */,
 				37723AB22A01384A00A5C44D /* ImagesListCell.swift in Sources */,
 				374D6C2A2A2A659F000D59D0 /* OAuthTokenResponseBody.swift in Sources */,
+				37F6E7042A49972300BF323E /* ImagesListService.swift in Sources */,
 				37EFD5F12A37257E007ADEB6 /* URLSession.swift in Sources */,
 				37EFD5EF2A372170007ADEB6 /* ProfileResult.swift in Sources */,
 				3770CB612A121CB100691185 /* ProfileViewController.swift in Sources */,
