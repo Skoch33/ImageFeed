@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		371BC3652A67EC0700118E5F /* ImagesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BC3642A67EC0700118E5F /* ImagesListPresenter.swift */; };
+		371BC3672A67F47C00118E5F /* ImagesListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BC3662A67F47C00118E5F /* ImagesListTests.swift */; };
+		371BC3692A67F48A00118E5F /* ImageListViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BC3682A67F48A00118E5F /* ImageListViewControllerSpy.swift */; };
+		371BC36B2A67F49800118E5F /* ImageListPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BC36A2A67F49800118E5F /* ImageListPresenterSpy.swift */; };
 		3732F92A2A124E1100051201 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3732F9292A124E1100051201 /* SingleImageViewController.swift */; };
 		373713572A6545CD001A3DCA /* WebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373713562A6545CD001A3DCA /* WebViewTests.swift */; };
 		3737135E2A65473A001A3DCA /* WebViewPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737135D2A65473A001A3DCA /* WebViewPresenterSpy.swift */; };
@@ -55,6 +59,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		371BC3642A67EC0700118E5F /* ImagesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListPresenter.swift; sourceTree = "<group>"; };
+		371BC3662A67F47C00118E5F /* ImagesListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListTests.swift; sourceTree = "<group>"; };
+		371BC3682A67F48A00118E5F /* ImageListViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewControllerSpy.swift; sourceTree = "<group>"; };
+		371BC36A2A67F49800118E5F /* ImageListPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListPresenterSpy.swift; sourceTree = "<group>"; };
 		3732F9292A124E1100051201 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		373713542A6545CD001A3DCA /* ImageFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		373713562A6545CD001A3DCA /* WebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTests.swift; sourceTree = "<group>"; };
@@ -130,6 +138,9 @@
 				373713652A656D52001A3DCA /* ProfileTest.swift */,
 				373713672A656D86001A3DCA /* ProfilePresenterSpy.swift */,
 				373713692A656DA1001A3DCA /* ProfileViewControllerSpy.swift */,
+				371BC3662A67F47C00118E5F /* ImagesListTests.swift */,
+				371BC3682A67F48A00118E5F /* ImageListViewControllerSpy.swift */,
+				371BC36A2A67F49800118E5F /* ImageListPresenterSpy.swift */,
 			);
 			path = ImageFeedTests;
 			sourceTree = "<group>";
@@ -195,6 +206,7 @@
 				375259F829FE79910062759C /* ImagesListViewController.swift */,
 				37723AB12A01384A00A5C44D /* ImagesListCell.swift */,
 				37F6E7032A49972300BF323E /* ImagesListService.swift */,
+				371BC3642A67EC0700118E5F /* ImagesListPresenter.swift */,
 			);
 			path = ImagesList;
 			sourceTree = "<group>";
@@ -347,9 +359,12 @@
 			files = (
 				373713572A6545CD001A3DCA /* WebViewTests.swift in Sources */,
 				373713662A656D52001A3DCA /* ProfileTest.swift in Sources */,
+				371BC3692A67F48A00118E5F /* ImageListViewControllerSpy.swift in Sources */,
 				373713602A654A7F001A3DCA /* WebViewViewControllerSpy.swift in Sources */,
 				373713682A656D86001A3DCA /* ProfilePresenterSpy.swift in Sources */,
+				371BC3672A67F47C00118E5F /* ImagesListTests.swift in Sources */,
 				3737135E2A65473A001A3DCA /* WebViewPresenterSpy.swift in Sources */,
+				371BC36B2A67F49800118E5F /* ImageListPresenterSpy.swift in Sources */,
 				3737136A2A656DA1001A3DCA /* ProfileViewControllerSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,6 +395,7 @@
 				37EFD5F32A3725F7007ADEB6 /* ProfileImageService.swift in Sources */,
 				37EFD5EA2A371AD7007ADEB6 /* UIBlockingProgressHUD.swift in Sources */,
 				373713642A65676D001A3DCA /* UIColor+Extensions.swift in Sources */,
+				371BC3652A67EC0700118E5F /* ImagesListPresenter.swift in Sources */,
 				37EFD5ED2A3720C6007ADEB6 /* ProfileService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
