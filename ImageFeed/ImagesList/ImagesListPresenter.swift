@@ -45,7 +45,7 @@ final class ImagesListPresenter: ImagesListPresenterProtocol {
     
     func setLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
         imagesListService.changeLike(photoId: photoId, isLike: isLike, {[weak self] result in
-            guard self != nil else { return }
+            guard let self = self else { return }
             switch result{
             case .success(_):
                 completion(.success(()))
@@ -56,7 +56,7 @@ final class ImagesListPresenter: ImagesListPresenterProtocol {
         })
     }
 
-    internal func makeAlert(with error: Error) -> UIAlertController {
+    func makeAlert(with error: Error) -> UIAlertController {
         let alert = UIAlertController(
             title: "Что-то пошло не так(",
             message: "Не удалось поставить лайк",

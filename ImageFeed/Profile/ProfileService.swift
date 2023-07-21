@@ -49,28 +49,3 @@ final class ProfileService {
          return request
      }
  }
-
- struct ProfileResult: Codable {
-     let username, firstName, lastName: String
-     let bio: String?
-
-     enum CodingKeys: String, CodingKey {
-         case username = "username"
-         case firstName = "first_name"
-         case lastName = "last_name"
-         case bio = "bio"
-         
-     }
- }
-
- struct Profile: Codable {
-     let username, name, loginName: String
-     let bio: String?
-
-     init(decodedData: ProfileResult) {
-         self.username = decodedData.username
-         self.name = (decodedData.firstName ) + " " + (decodedData.lastName )
-         self.loginName = "@" + (decodedData.username )
-         self.bio = decodedData.bio
-     }
- }

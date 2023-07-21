@@ -76,7 +76,7 @@ final class ProfilePresenter: ProfilePresenterProtocol {
     // MARK: - Exit
     func logout() {
         storageToken.clearToken()
-        WebViewViewController.clean()
+        cleanWebData()
         cleanServicesData()
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
                     .instantiateViewController(withIdentifier: "TabBarViewController")
@@ -90,6 +90,15 @@ final class ProfilePresenter: ProfilePresenterProtocol {
         ImagesListService.shared.clean()
         ProfileService.shared.clean()
         ProfileImageService.shared.clean()
+    }
+    
+    func cleanWebData() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+            }
+        }
     }
     
     // MARK: - Profile Image URL

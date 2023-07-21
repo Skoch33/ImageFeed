@@ -121,7 +121,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
 }
 
 // MARK: - Extensions
-// MARK: - Notification
+
 extension ProfileViewController {
 
     func updateAvatar() {
@@ -136,9 +136,6 @@ extension ProfileViewController {
         cache.clearDiskCache()
         cache.clearMemoryCache()
     }
-}
-// MARK: - Exit with Alert
-extension ProfileViewController {
     
     func showLogoutAlert() {
         let alert = presenter.makeAlert()

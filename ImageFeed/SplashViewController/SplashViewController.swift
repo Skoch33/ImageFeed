@@ -130,7 +130,7 @@ extension SplashViewController {
             alert.dismiss(animated: true)
         }
         alert.addAction(uiAlertAction)
-        present(alert, animated: true)
+        self.present(alert, animated: true)
     }
 }
 

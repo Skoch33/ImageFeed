@@ -62,6 +62,10 @@ final class ImagesListService {
     private let storageToken = OAuth2TokenStorage()
     private let dateFormatter = ISO8601DateFormatter()
     
+    func updatePhotos(_ photos: [Photo]) {
+        self.photos = photos
+    }
+    
     func clean() {
         photos = []
         lastLoadedPage = nil

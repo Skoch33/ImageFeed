@@ -23,10 +23,6 @@ final class ImagesListViewController: UIViewController, ImagesListViewController
         return .lightContent
     }
     
-    //MARK: - IBOutlet
-    
-    @IBOutlet private var tableView: UITableView!
-    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -40,6 +36,27 @@ final class ImagesListViewController: UIViewController, ImagesListViewController
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: ImagesListService.DidChangeNotification, object: nil)
     }
+    
+    //MARK: - Properties
+    
+    lazy var presenter: ImagesListPresenterProtocol? = {
+        return ImagesListPresenter()
+    } ()
+    var photos: [Photo] = []
+    private let imagesListService = ImagesListService.shared
+    
+    private let showSingleImageSegueIdentifier = "ShowSingleImage"
+    
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
+    }()
+    
+    //MARK: - IBOutlet
+    
+    @IBOutlet private var tableView: UITableView!
     
     // MARK: - Functions
     
@@ -67,22 +84,6 @@ final class ImagesListViewController: UIViewController, ImagesListViewController
             } completion: { _ in }
         }
     }
-    
-    //MARK: - Private Properties
-    lazy var presenter: ImagesListPresenterProtocol? = {
-        return ImagesListPresenter()
-    } ()
-    var photos: [Photo] = []
-    private let imagesListService = ImagesListService.shared
-    
-    private let showSingleImageSegueIdentifier = "ShowSingleImage"
-    
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        return formatter
-    }()
 }
 
 //MARK: - ImagesListViewController
