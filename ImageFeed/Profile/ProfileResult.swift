@@ -1,15 +1,21 @@
 //
-//  ProfileModels.swift
+//  ProfileResult.swift
 //  ImageFeed
 //
-//  Created by Semen Kocherga on 12.06.2023.
+//  Created by Semen Kocherga on 20.07.2023.
 //
 
-import UIKit
+import Foundation
 
 struct ProfileResult: Codable {
-    let username: String
-    let first_name: String?
-    let last_name: String?
+    let username, firstName, lastName: String
     let bio: String?
+
+    enum CodingKeys: String, CodingKey {
+        case username = "username"
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case bio = "bio"
+        
+    }
 }

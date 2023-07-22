@@ -61,7 +61,7 @@ final class SingleImageViewController: UIViewController, UIScrollViewDelegate {
             case .success(let imageResult):
                 self.rescaleAndCenterImageInScrollView(image: imageResult.image)
             case .failure:
-                showAlert()
+                self.showAlert()
             }
             UIBlockingProgressHUD.dismiss()
         }
