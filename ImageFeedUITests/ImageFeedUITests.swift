@@ -11,10 +11,10 @@ import XCTest
 
 class Image_FeedUITests: XCTestCase {
     
-    private let login = ""
-    private let password = ""
-    private let userName = ""
-    private let nickname = "@"
+    private let login = "kochesem@gmail.com"
+    private let password = "Semen666"
+    private let userName = "Semen Kocherga"
+    private let nickname = "@skoch33"
     
     private let app = XCUIApplication()
     
@@ -25,31 +25,30 @@ class Image_FeedUITests: XCTestCase {
     
     func testAuth() throws {
         app.buttons["Authenticate"].tap()
+        print(app.debugDescription)
         
         let webView = app.webViews["UnsplashWebView"]
         XCTAssertTrue(webView.waitForExistence(timeout: 5))
         
-        let loginTextField = webView.descendants(matching: .textField).element
-        XCTAssertTrue(webView.waitForExistence(timeout: 5))
+        let loginTextField = webView.textFields.element
+        XCTAssertTrue(loginTextField.waitForExistence(timeout: 5))
+        let passwordTextField = webView.descendants(matching: .secureTextField).element
+        XCTAssertTrue(passwordTextField.waitForExistence(timeout: 5))
+        
         loginTextField.tap()
         loginTextField.typeText(login)
+        print(app.debugDescription)
         app.toolbars["Toolbar"].buttons["Done"].tap()
         
-        let passwordTextField = webView.descendants(matching: .secureTextField).element
-        XCTAssertTrue(webView.waitForExistence(timeout: 5))
         passwordTextField.tap()
         passwordTextField.typeText(password)
-        webView.swipeUp()
         
         webView.buttons["Login"].tap()
         
-        sleep(5)
-        
         let tablesQuery = app.tables
         let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
-        XCTAssertTrue(cell.waitForExistence(timeout: 5))
-        
-        print(app.debugDescription)
+
+        XCTAssertTrue(cell.waitForExistence(timeout: 10))
     }
     
     func testFeed() throws {
@@ -61,7 +60,7 @@ class Image_FeedUITests: XCTestCase {
         
         let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
         cellToLike.buttons["likeButton"].tap()
-        sleep(3)
+        XCTAssertTrue(cellToLike.waitForExistence(timeout: 5))
         cellToLike.buttons["likeButton"].tap()
         sleep(3)
         cellToLike.tap()
